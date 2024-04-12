@@ -1,0 +1,9 @@
+python-dotenv
+crewai
+duckduckgo-search
+wikibase-rest-api-client 
+mediawikiapi
+langchain-community 
+langchain-openai
+wikipedia
+langchain
