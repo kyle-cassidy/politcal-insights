@@ -18,6 +18,14 @@ search_tool = DuckDuckGoSearchRun()
 wikipedia_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
 wikidata_tool = WikidataQueryRun(api_wrapper=WikidataAPIWrapper())
 
+# Political advisor Role
+# domain expert
+
+# use agent to search for queries
+
+
+
+
 
 researcher = Agent(
   role='Political Researcher',
@@ -50,7 +58,7 @@ def callback_function(output: TaskOutput):
 task1 = Task(
   description="""Research the city of Gainesville, Florida
 """,
-  expected_output="Facts about the city that can be used to generate a report.",
+  expected_output="A list of facts",
   callback=callback_function,
   agent= researcher,
   tools=[search_tool, wikidata_tool, wikipedia_tool]
@@ -60,6 +68,7 @@ task2 = Task(
   description="""Take the data provided and write a detailed report.  
     """,
   agent=manager,
+  expected_output="A report on the city",
   tools=[],
   callback=callback_function,
   context=[task1]
