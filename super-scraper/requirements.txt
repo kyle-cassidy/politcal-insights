@@ -7,4 +7,7 @@ langchain-community
 langchain-openai
 wikipedia
 langchain
+tiktoken
+langchainhub
 langchain-core
+crewai[tools]
