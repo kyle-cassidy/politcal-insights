@@ -18,13 +18,6 @@ search_tool = DuckDuckGoSearchRun()
 wikipedia_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper())
 wikidata_tool = WikidataQueryRun(api_wrapper=WikidataAPIWrapper())
 
-# Political advisor Role
-# domain expert
-
-# use agent to search for queries
-
-
-
 
 
 researcher = Agent(
@@ -53,10 +46,11 @@ def callback_function(output: TaskOutput):
         Output: {output.raw_output}
     """)
 
+name_space = input("Please provide the name of the city you would like to research:")
 
 task1 = Task(
-  description="""Search the web to gather information on Gainesville, Florida.
-    It's important for us to consider facts about Gainesville that will help us understand the political climate of the city
+  description=f"""Search the web to gather information on {name_space}.
+    It's important for us to consider facts about {name_space} that will help us understand the political climate of the {name_space}
 """,
   expected_output="A list of facts",
   callback=callback_function,
