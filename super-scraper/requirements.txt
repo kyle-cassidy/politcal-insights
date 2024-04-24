@@ -1,3 +1,4 @@
+# upsonic
 python-dotenv
 crewai
 duckduckgo-search
