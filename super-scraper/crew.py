@@ -21,8 +21,7 @@ wikidata_tool = WikidataQueryRun(api_wrapper=WikidataAPIWrapper())
 
 researcher = Agent(
     role="Political Researcher",
-    goal="""Search the web to gather information on Gainesville, Florida.
-    It's important for us to consider facts about Gainesville that will help us understand the political climate of the city""",
+    goal="""Collect a large number of facts on the city""",
     backstory="""You are political researcher that gathers facts about areas to help campaigns create a plan of attack.""",
     verbose=True,
     allow_delegation=False,
@@ -50,19 +49,23 @@ def callback_function(output: TaskOutput):
     )
 
 
+name_space = input("Please provide the name of the city you would like to research:")
+
 task1 = Task(
-    description="""Research the city of Gainesville, Florida
+    description=f"""Search the web to gather information on {name_space}.
+    It's important for us to consider facts about {name_space} that will help us understand the political climate of the {name_space}
 """,
-    expected_output="Facts about the city that can be used to generate a report.",
+    expected_output="A list of facts",
     callback=callback_function,
     agent=researcher,
     tools=[search_tool, wikidata_tool, wikipedia_tool],
 )
 
 task2 = Task(
-    description="""Take the data provided and write a detailed report.  
+    description="""Take the data provided and write a detailed report to help an election campaign come up with a plan to win.  
     """,
     agent=manager,
+    expected_output="A report on the city",
     tools=[],
     callback=callback_function,
     context=[task1],
